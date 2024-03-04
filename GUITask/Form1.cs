@@ -7,7 +7,7 @@ namespace GUITask
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SolveButton1_Click(object sender, EventArgs e)
         {
             string timeStart = this.timeStartInput.Text;
             string timeEnd = this.timeEndInput.Text;
@@ -18,15 +18,28 @@ namespace GUITask
                 bool result = TrainLogic.CheckTime(timeStart, timeEnd, time);
                 timeResult.Text = TrainLogic.ResultToText(result);
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 timeResult.Text = ex.Message;
             }
         }
 
+        private void ClearButton1_Click(object sender, EventArgs e)
+        {
+            this.timeStartInput.Clear();
+            this.timeEndInput.Clear();
+            this.timeInput.Clear();
+            OnTrainInputDataChanged(sender, e);
+        }
+
         private void OnTrainInputDataChanged(object sender, EventArgs e)
         {
             timeResult.Text = "";
+        }
+
+        private void TaskButton1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Поезд прибывает на станцию в a часов b минут и отправляется в c часов d минут. Пассажир пришел на платформу в n часов m минут. Будет ли поезд стоять на платформе?\nЧисла a, b, c, d, n, m — целые, 0 < a 23, 0 < b 59, 0 < c 23, 0 < d 59, 0 < n 23, 0 < m 59", "Задача");
         }
 
         public class TrainLogic
@@ -98,6 +111,11 @@ namespace GUITask
 
                 return answ;
             }
+        }
+
+        private void Train_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
