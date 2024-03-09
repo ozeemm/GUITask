@@ -5,6 +5,13 @@ namespace GUITask
         public Train()
         {
             InitializeComponent();
+
+            timeStartInput.Text = Properties.Settings.Default.timeStartInput;
+            timeEndInput.Text = Properties.Settings.Default.timeEndInput;
+            timeInput.Text = Properties.Settings.Default.timeInput;
+            aInput.Text = Properties.Settings.Default.aInput;
+            bInput.Text = Properties.Settings.Default.bInput;
+            tabControl1.SelectTab(Properties.Settings.Default.currentTab);
         }
 
         private void SolveButton1_Click(object sender, EventArgs e)
@@ -53,7 +60,7 @@ namespace GUITask
                 squaresListLabel.Text = answer.squaresStr;
                 squaresAnswer.Text = $"Итого: {answer.count} квадратов";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 squaresAnswer.Text = ex.Message;
             }
@@ -63,7 +70,7 @@ namespace GUITask
         {
             aInput.Clear();
             bInput.Clear();
-            OnSquaresInputDataChanged(sender, e);   
+            OnSquaresInputDataChanged(sender, e);
         }
 
         private void TaskButton2_Click(object sender, EventArgs e)
@@ -148,9 +155,25 @@ namespace GUITask
             }
         }
 
-        private void Train_Load(object sender, EventArgs e)
+        private void Train_FormClosing(object sender, FormClosingEventArgs e)
         {
+            SaveData();
+        }
 
+        private void SaveData()
+        {
+            Properties.Settings.Default.timeStartInput = timeStartInput.Text;
+            Properties.Settings.Default.timeEndInput = timeEndInput.Text;
+            Properties.Settings.Default.timeInput = timeInput.Text;
+            Properties.Settings.Default.aInput = aInput.Text;
+            Properties.Settings.Default.bInput = bInput.Text;
+            Properties.Settings.Default.currentTab = tabControl1.SelectedIndex;
+            Properties.Settings.Default.Save();
+        }
+
+        private void Train_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SaveData();
         }
     }
 }

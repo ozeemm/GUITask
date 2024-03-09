@@ -281,7 +281,7 @@
             Controls.Add(tabControl1);
             Name = "Train";
             Text = "GUI";
-            Load += Train_Load;
+            FormClosed += Train_FormClosed;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
