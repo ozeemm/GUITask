@@ -42,6 +42,41 @@ namespace GUITask
             MessageBox.Show("Поезд прибывает на станцию в a часов b минут и отправляется в c часов d минут. Пассажир пришел на платформу в n часов m минут. Будет ли поезд стоять на платформе?\nЧисла a, b, c, d, n, m — целые, 0 < a 23, 0 < b 59, 0 < c 23, 0 < d 59, 0 < n 23, 0 < m 59", "Задача");
         }
 
+        private void SolveButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int a = Convert.ToInt32(aInput.Text);
+                int b = Convert.ToInt32(bInput.Text);
+                Squares answer = SquaresLogic.GetSquares(a, b);
+
+                squaresListLabel.Text = answer.squaresStr;
+                squaresAnswer.Text = $"Итого: {answer.count} квадратов";
+            }
+            catch(Exception ex)
+            {
+                squaresAnswer.Text = ex.Message;
+            }
+        }
+
+        private void ClearButton2_Click(object sender, EventArgs e)
+        {
+            aInput.Clear();
+            bInput.Clear();
+            OnSquaresInputDataChanged(sender, e);   
+        }
+
+        private void TaskButton2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Дан прямоугольник с размерами a x b. От него отрезают квадраты максимального размера, пока это возможно. Затем от оставшегося прямоугольника вновь отрезают квадраты максимально возможного размера и т. д. \nНа какие квадраты и в каком их количестве будет разрезан исходный прямоугольник?", "Задача");
+        }
+
+        private void OnSquaresInputDataChanged(object sender, EventArgs e)
+        {
+            squaresListLabel.Text = "";
+            squaresAnswer.Text = "";
+        }
+
         public class TrainLogic
         {
             public static bool CheckTime(string timeStart, string timeEnd, string time)
