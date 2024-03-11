@@ -30,7 +30,6 @@ namespace GUITask
                 timeResult.Text = ex.Message;
             }
         }
-
         private void ClearButton1_Click(object sender, EventArgs e)
         {
             this.timeStartInput.Clear();
@@ -38,15 +37,13 @@ namespace GUITask
             this.timeInput.Clear();
             OnTrainInputDataChanged(sender, e);
         }
-
-        private void OnTrainInputDataChanged(object sender, EventArgs e)
-        {
-            timeResult.Text = "";
-        }
-
         private void TaskButton1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Поезд прибывает на станцию в a часов b минут и отправляется в c часов d минут. Пассажир пришел на платформу в n часов m минут. Будет ли поезд стоять на платформе?\nЧисла a, b, c, d, n, m — целые, 0 < a 23, 0 < b 59, 0 < c 23, 0 < d 59, 0 < n 23, 0 < m 59", "Задача");
+        }
+        private void OnTrainInputDataChanged(object sender, EventArgs e)
+        {
+            timeResult.Text = "";
         }
 
         private void SolveButton2_Click(object sender, EventArgs e)
@@ -65,19 +62,16 @@ namespace GUITask
                 squaresAnswer.Text = ex.Message;
             }
         }
-
         private void ClearButton2_Click(object sender, EventArgs e)
         {
             aInput.Clear();
             bInput.Clear();
             OnSquaresInputDataChanged(sender, e);
         }
-
         private void TaskButton2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Дан прямоугольник с размерами a x b. От него отрезают квадраты максимального размера, пока это возможно. Затем от оставшегося прямоугольника вновь отрезают квадраты максимально возможного размера и т. д. \nНа какие квадраты и в каком их количестве будет разрезан исходный прямоугольник?", "Задача");
         }
-
         private void OnSquaresInputDataChanged(object sender, EventArgs e)
         {
             squaresListLabel.Text = "";
@@ -153,11 +147,6 @@ namespace GUITask
 
                 return answ;
             }
-        }
-
-        private void Train_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            SaveData();
         }
 
         private void SaveData()
